@@ -7,4 +7,10 @@ class DirectorsController < ApplicationController
 
   end
 
+  def wisest
+  
+    @oldest = Director.all.order({ :dob => :asc }).where.not( :dob => nil).at(0)
+    render({ :template => "director_templates/eldest.html.erb"})
+  end
+
 end
