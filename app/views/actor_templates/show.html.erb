@@ -40,7 +40,7 @@
     Image
   </dt>
   <dd>
-    <img src="https://image.tmdb.org/t/p/w500/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg" style="width:250px;">
+    <img src="http://robohash.org/<%= @the_actor.image %>">
   </dd>
 
   <dt>
@@ -59,3 +59,38 @@
 </dl>
 
 <hr>
+
+<h2>Filmography</h2>
+
+<table border="1">
+  <tr>
+    <td>Title</td>
+    <td>Year</td>
+    <td>Director</td>
+    <td>Character name</td>
+    <td></td>
+  </tr>
+  <% @filmography.each do |a_film| %>
+    <tr>
+      <td>
+        <% m = Movie.where({:id => a_film.movie_id}).at(0) %>
+        <%= m.title %>
+      </td>
+      <td>
+        <%= m.year %>
+      </td>
+      <td>
+        <% d = Director.where({ :id => m.director_id}).at(0) %>
+        <%= d.name %>
+      </td>
+      <td>
+        <%= a_film.name%>
+      </td>
+      <td>
+        <a href="">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
